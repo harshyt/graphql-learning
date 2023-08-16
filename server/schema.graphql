@@ -1,0 +1,21 @@
+type Query {
+    jobs: [Job]
+    job(id: ID!): Job
+    company(id: ID!): Company
+}
+
+type Company {
+    id: ID!,
+    name: String!,
+    description: String
+    jobs: [Job!]!
+}
+
+type Job {
+    id: ID!
+    """This date must be in ISO format"""
+    date: String!
+    title: String!
+    company: Company!
+    description: String
+}
