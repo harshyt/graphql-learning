@@ -1,4 +1,4 @@
-import { getJobs, getJob, getJobsByCompany } from './db/jobs.js'
+import { getJobs, getJob, getJobsByCompany, createJob } from './db/jobs.js'
 import { getCompany } from './db/companies.js'
 import { GraphQLError } from 'graphql'
 
@@ -24,6 +24,12 @@ export const resolvers = {
     Job: {
         date: (job) => job.createdAt.slice(0, 'yyyy-mm-dd'.length),
         company: (job) => getCompany(job.companyId)
+    },
+    Mutation: {
+        createJob: (_root, { title, description }) => {
+            const companyId = 'FjcJCHJALA4i'
+            return createJob({ companyId, title, description })
+        }
     }
 }
 
