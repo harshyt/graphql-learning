@@ -22,10 +22,18 @@ type Job {
 
 type Mutation {
     createJob(input: CreateJobInput!): Job
+    deleteJob(id: ID!): Job
+    updateJob(input: UpdateJobInput): Job
 }
 
 """This is input type (kinda similar to typescript assigning types to variables)"""
 input CreateJobInput {
+    title: String!,
+    description: String
+}
+
+input UpdateJobInput {
+    id: ID!,
     title: String!,
     description: String
 }
