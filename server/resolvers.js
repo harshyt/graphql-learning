@@ -26,7 +26,9 @@ export const resolvers = {
         company: (job) => getCompany(job.companyId)
     },
     Mutation: {
-        createJob: (_root, { input }) => {
+        createJob: (_root, { input }, { auth }) => {
+            if(!auth)
+                throw notFoundError('User not authenticated')
             const { title, description } = input
             const companyId = 'FjcJCHJALA4i'
             return createJob({ companyId, title, description })
